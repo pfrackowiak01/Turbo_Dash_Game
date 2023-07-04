@@ -6,6 +6,14 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public PlayerMovement playerMovement;
+    public GameManager gameManager;
+    public int playerLives;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerLives = 3;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -13,12 +21,12 @@ public class PlayerCollision : MonoBehaviour
         {
             case "Wall":
                 Debug.Log("Wall detected.");
-                playerMovement.enabled = false;
+                LooseLife();
                 break;
 
             case "Obstacle":
                 Debug.Log("Obstacle detected.");
-                playerMovement.enabled = false;
+                LooseLife();
                 break;
 
             case "Floor":
@@ -32,4 +40,19 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
+    private void LooseLife()
+    {
+        if (playerLives > 1)
+        {
+            playerLives--;
+            Debug.Log("Aktualne ¿ycia: " + playerLives);
+        }
+        else LooseGame();
+    }
+
+    private void LooseGame()
+    {
+        playerMovement.enabled = false;
+        FindObjectOfType<GameManager>().GameOver();
+    }
 }

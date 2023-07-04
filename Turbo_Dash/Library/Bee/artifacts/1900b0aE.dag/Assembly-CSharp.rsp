@@ -362,9 +362,11 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.4f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.4f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Code/Scripts/FollowPlayer.cs"
+"Assets/Code/Scripts/GameManager.cs"
 "Assets/Code/Scripts/ObstacleMovement.cs"
 "Assets/Code/Scripts/PlayerCollision.cs"
 "Assets/Code/Scripts/PlayerMovement.cs"
+"Assets/Code/Scripts/Score.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 

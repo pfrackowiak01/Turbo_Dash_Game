@@ -1,0 +1,169 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.unity3d.player" >
+5
+6    <uses-sdk
+7        android:minSdkVersion="22"
+7-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml
+8        android:targetSdkVersion="32" />
+8-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml
+9
+10    <uses-feature android:glEsVersion="0x00030000" />
+10-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:3:3-52
+10-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:3:17-49
+11    <uses-feature
+11-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:4:3-91
+12        android:name="android.hardware.vulkan.version"
+12-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:4:17-63
+13        android:required="false" />
+13-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:4:64-88
+14    <uses-feature
+14-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:5:3-88
+15        android:name="android.hardware.touchscreen"
+15-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:5:17-60
+16        android:required="false" />
+16-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:5:61-85
+17    <uses-feature
+17-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:6:3-99
+18        android:name="android.hardware.touchscreen.multitouch"
+18-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:6:17-71
+19        android:required="false" />
+19-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:6:72-96
+20    <uses-feature
+20-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:7:3-108
+21        android:name="android.hardware.touchscreen.multitouch.distinct"
+21-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:7:17-80
+22        android:required="false" />
+22-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:7:81-105
+23
+24    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+24-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:33:3-75
+24-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:33:20-72
+25
+26    <application android:extractNativeLibs="true" >
+26-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:8:3-32:17
+26-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:8:16-48
+27        <meta-data
+27-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:9:5-69
+28            android:name="unity.splash-mode"
+28-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:9:16-48
+29            android:value="0" />
+29-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:9:49-66
+30        <meta-data
+30-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:10:5-74
+31            android:name="unity.splash-enable"
+31-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:10:16-50
+32            android:value="True" />
+32-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:10:51-71
+33        <meta-data
+33-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:11:5-78
+34            android:name="unity.launch-fullscreen"
+34-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:11:16-54
+35            android:value="True" />
+35-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:11:55-75
+36        <meta-data
+36-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:5-83
+37            android:name="unity.allow-resizable-window"
+37-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:16-59
+38            android:value="True" />
+38-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:60-80
+39        <meta-data
+39-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:13:5-81
+40            android:name="notch.config"
+40-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:13:16-43
+41            android:value="portrait|landscape" />
+41-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:13:44-78
+42        <meta-data
+42-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:14:5-84
+43            android:name="unity.auto-report-fully-drawn"
+43-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:14:16-60
+44            android:value="true" />
+44-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:14:61-81
+45
+46        <activity
+46-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:5-24:16
+47            android:name="com.unity3d.player.UnityPlayerActivity"
+47-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:15-68
+48            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+48-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:185-366
+49            android:exported="true"
+49-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:437-460
+50            android:hardwareAccelerated="false"
+50-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:401-436
+51            android:launchMode="singleTask"
+51-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:153-184
+52            android:resizeableActivity="true"
+52-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:367-400
+53            android:screenOrientation="userLandscape"
+53-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:111-152
+54            android:theme="@style/UnityThemeSelector" >
+54-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:69-110
+55            <intent-filter>
+55-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:16:7-19:23
+56                <category android:name="android.intent.category.LAUNCHER" />
+56-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:17:9-69
+56-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:17:19-66
+57
+58                <action android:name="android.intent.action.MAIN" />
+58-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:18:9-61
+58-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:18:17-58
+59            </intent-filter>
+60
+61            <meta-data
+61-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:20:7-82
+62                android:name="unityplayer.UnityActivity"
+62-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:20:18-58
+63                android:value="true" />
+63-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:20:59-79
+64            <meta-data
+64-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:21:7-130
+65                android:name="WindowManagerPreference:FreeformWindowSize"
+65-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:21:18-75
+66                android:value="@string/FreeformWindowSize_maximize" />
+66-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:21:76-127
+67            <meta-data
+67-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:22:7-145
+68                android:name="WindowManagerPreference:FreeformWindowOrientation"
+68-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:22:18-82
+69                android:value="@string/FreeformWindowOrientation_landscape" />
+69-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:22:83-142
+70            <meta-data
+70-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:7-70
+71                android:name="notch_support"
+71-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:18-46
+72                android:value="true" />
+72-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:47-67
+73        </activity>
+74
+75        <receiver
+75-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:25:5-113
+76            android:name="com.unity.androidnotifications.UnityNotificationManager"
+76-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:25:15-85
+77            android:exported="false" />
+77-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:25:86-110
+78        <receiver
+78-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:26:5-30:16
+79            android:name="com.unity.androidnotifications.UnityNotificationRestartOnBootReceiver"
+79-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:26:15-99
+80            android:enabled="false"
+80-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:26:100-123
+81            android:exported="false" >
+81-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:26:124-148
+82            <intent-filter>
+82-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:27:7-29:23
+83                <action android:name="android.intent.action.BOOT_COMPLETED" />
+83-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:28:9-71
+83-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:28:17-68
+84            </intent-filter>
+85        </receiver>
+86
+87        <meta-data
+87-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:31:5-99
+88            android:name="com.unity.androidnotifications.exact_scheduling"
+88-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:31:16-78
+89            android:value="0" />
+89-->C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\AndroidManifest.xml:31:79-96
+90    </application>
+91
+92</manifest>
