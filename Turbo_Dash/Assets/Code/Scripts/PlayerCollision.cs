@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-    public GameManager gameManager;
     public int playerLives;
 
     // Start is called before the first frame update
@@ -15,18 +14,23 @@ public class PlayerCollision : MonoBehaviour
         playerLives = 3;
     }
 
+    private void Update()
+    {
+        // Zakoñczenie gry jeœli gracz wypad³ poza mape
+        if (transform.position.y < -10f) LoseGame();
+    }
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.collider.tag)
         {
             case "Wall":
                 Debug.Log("Wall detected.");
-                LooseLife();
+                LoseLife();
                 break;
 
             case "Obstacle":
                 Debug.Log("Obstacle detected.");
-                LooseLife();
+                LoseLife();
                 break;
 
             case "Floor":
@@ -40,19 +44,19 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
-    private void LooseLife()
+    private void LoseLife()
     {
         if (playerLives > 1)
         {
             playerLives--;
             Debug.Log("Aktualne ¿ycia: " + playerLives);
         }
-        else LooseGame();
+        else LoseGame();
     }
 
-    private void LooseGame()
+    private void LoseGame()
     {
         playerMovement.enabled = false;
-        FindObjectOfType<GameManager>().GameOver();
+        GameManager.Instance.GameOver();
     }
 }

@@ -16,9 +16,9 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 22
+        minSdkVersion 26
         targetSdkVersion 32
-        applicationId 'com.DefaultCompany.Turbo_Dash'
+        applicationId 'com.MyCompany.Turbo_Dash'
         ndk {
             abiFilters 'armeabi-v7a'
         }

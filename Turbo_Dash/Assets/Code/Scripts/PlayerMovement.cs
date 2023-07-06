@@ -7,30 +7,36 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float moveSpeed = 5f; // Prêdkoœæ poruszania siê gracza
-    private float directionOfMovement = 0f; // Decyduje w któr¹ stronê porusza siê gracz (-1 lewo, 1 prawo)
+    private float directionOfMovement; // Decyduje w któr¹ stronê porusza siê gracz (-1 lewo, 1 prawo, 0 do przodu)
 
     private Rigidbody playerRigidbody; // Referencja do Rigidbody gracza
 
     public float forwardForce = 1000f;
-    public GameManager gameManager;
 
     private bool leftClicked;
     private bool rightClicked;
 
+    Vector3 movement;
+
     private void Awake()
     {
+        directionOfMovement = 0f;
         playerRigidbody = GetComponent<Rigidbody>(); // Pobieranie referencji do Rigidbody z obiektu "Player"
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         //playerRigidbody.AddForce(0, 200, 500);
     }
 
-    // Update is called once per frame (to mess with physics)
     private void FixedUpdate()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         leftClicked = false;
         rightClicked = false;
@@ -42,35 +48,27 @@ public class PlayerMovement : MonoBehaviour
             foreach (Touch touch in Input.touches)
             {
                 Debug.Log("Klikniêto coœ");
-               CheckClickPosition(touch.position);
+                CheckClickPosition(touch.position);
             }
         }
 
-        
+        // Dla Windowsa
         // Pobieranie wejœcia ruchu gracza z komputera (strza³ki)
         float horizontalInput = Input.GetAxis("Horizontal");
         // Obliczanie wektora ruchu gracza
-        Vector3 movement = new Vector3(horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;
-        
+        movement = new Vector3(horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;
 
+        // Dla Androida
         // Sprawdzanie kierunku poruszania siê gracza
         //DirectionOfPlayerMovement();
         // Obliczanie wektora ruchu gracza
-        //Vector3 movement = new Vector3(directionOfMovement, 0f, 0f) * moveSpeed * Time.deltaTime;
+        //movement = new Vector3(directionOfMovement, 0f, 0f) * moveSpeed * Time.deltaTime;
 
         // Aktualizacja pozycji gracza
         transform.position += movement;
 
         // Zakoñczenie gry jeœli gracz wypad³ poza mape
-        if (transform.position.y < -2f) gameManager.GameOver();
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (transform.position.y < -10f) GameManager.Instance.GameOver();
     }
 
     private void CheckClickPosition(Vector2 clickPosition)

@@ -9,7 +9,7 @@ INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Androi
 INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
 INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
 	package
-		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:70-109
+		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:70-104
 		INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml
 	android:versionName
@@ -17,7 +17,7 @@ INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Androi
 		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
 		INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml
 	xmlns:tools
-		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:110-156
+		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:105-151
 	android:versionCode
 		INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml
 		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
@@ -25,7 +25,7 @@ INJECTED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Androi
 	xmlns:android
 		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:11-69
 	android:installLocation
-		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:157-197
+		ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:2:152-192
 application
 ADDED from C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\AndroidManifest.xml:3:3-83
 MERGED from [:unityLibrary] C:\Users\Pawel\Documents\Unity Games\Turbo_Dash\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:26:5-90:19

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.DefaultCompany.Turbo_Dash"
+    package="com.MyCompany.Turbo_Dash"
     android:installLocation="preferExternal"
     android:versionCode="1"
     android:versionName="1.0.2" >
 
     <uses-sdk
-        android:minSdkVersion="22"
+        android:minSdkVersion="26"
         android:targetSdkVersion="32" />
 
     <supports-screens

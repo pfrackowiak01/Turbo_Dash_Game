@@ -9,14 +9,13 @@ public class FollowPlayer : MonoBehaviour
     public Vector3 offset;
     public float smoothSpeed;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         offset = new Vector3(0, 1, -7);
         smoothSpeed = 8f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Obliczanie docelowej pozycji kamery

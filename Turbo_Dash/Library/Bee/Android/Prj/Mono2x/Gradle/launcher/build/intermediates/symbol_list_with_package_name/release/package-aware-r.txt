@@ -1,4 +1,4 @@
-com.DefaultCompany.Turbo_Dash
+com.MyCompany.Turbo_Dash
 id unitySurfaceView
 mipmap app_icon
 mipmap app_icon_round
