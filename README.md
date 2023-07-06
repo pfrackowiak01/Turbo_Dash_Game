@@ -1,5 +1,5 @@
 # Turbo Dash Game in Unity (C\#)
-Big mobile game for my internship with BoomBit company.
+Big mobile game for my internship with BoomBit/TapNice company.
 
 Game Jolt profile: https://gamejolt.com/@SkipperFox
 
