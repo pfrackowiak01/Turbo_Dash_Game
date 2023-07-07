@@ -6,13 +6,18 @@ using UnityEngine;
 public class TubeManager : MonoBehaviour
 {
 
+    public Transform parrent;
+
     private void Start()
     {
-        // Stwórz prefab œciany
-        GameManager.Instance.SpawnObject(GameManager.Instance.wallPrefabs,transform);
+        if (GameManager.Instance.safeTubes == 0)
+        {
+            // Stwórz prefab œciany
+            GameManager.Instance.SpawnObject(GameManager.Instance.wallPrefabs, parrent);
 
-        // Stwórz prefab przeszkody
-        //GameManager.Instance.SpawnObject(GameManager.Instance.obstaclePrefabs, transform);
+            // Stwórz prefab przeszkody
+            //GameManager.Instance.SpawnObject(GameManager.Instance.obstaclePrefabs, parrent);
+        }
 
     }
 

@@ -374,6 +374,7 @@
 "Assets/Code/Scripts/ObstacleMovement.cs"
 "Assets/Code/Scripts/PlayerCollision.cs"
 "Assets/Code/Scripts/PlayerMovement.cs"
+"Assets/Code/Scripts/SpawningScripts/PillarScript.cs"
 "Assets/Code/Scripts/SpawningScripts/WallScript.cs"
 "Assets/Code/Scripts/TubeManager.cs"
 "Assets/Code/Scripts/TubeMovement.cs"

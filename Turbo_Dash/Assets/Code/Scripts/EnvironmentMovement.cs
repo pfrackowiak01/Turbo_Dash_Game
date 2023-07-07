@@ -49,6 +49,10 @@ public class EnvironmentMovement : MonoBehaviour
         // Pobieranie wejœcia ruchu gracza z telefonu (lewa/prawa stron ekranu)
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.touchCount > 0)
         {
+            // Pierwsze klikniêcie, aby wystartowaæ gre ORAZ wystarczy klikn¹æ lub doktn¹æ ekranu, aby odpauzowaæ
+            if (GameManager.Instance.gamePaused) GameManager.Instance.gamePaused = false;
+
+            // Dla ka¿dego klikniêcia/doktniêcia sprawdza pozycje (czy by³o po lewej czy po prawej)
             foreach (Touch touch in Input.touches)
             {
                 Debug.Log("Klikniêto coœ");
@@ -68,6 +72,7 @@ public class EnvironmentMovement : MonoBehaviour
         //transform.rotation = Quaternion.Euler(0f, 0f, rotationAmount);
     }
 
+    // Sprawdza pozycje klikniêcia na ekranie (lewo/prawo) i zaznacza odpowiedni¹ flagê
     private void CheckClickPosition(Vector2 clickPosition)
     {
         float screenWidth = Screen.width;
@@ -80,7 +85,7 @@ public class EnvironmentMovement : MonoBehaviour
     {
         if (leftClicked && rightClicked || !leftClicked && !rightClicked)
         {
-            Debug.Log("Klikniêto obie czêœci ekranu.");
+            Debug.Log("Klikniêto obie czêœci ekranu LUB nic.");
             directionOfMovement = 0f;
         }
         else if (leftClicked)

@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - Obstacle
   - Tube
+  - GameOver
   layers:
   - Default
   - TransparentFX

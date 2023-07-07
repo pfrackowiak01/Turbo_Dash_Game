@@ -8,7 +8,10 @@ public class UIScript : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI livesText;
+    public TextMeshProUGUI shieldText;
     public GameObject gamePausedScreen;
+    public GameObject gameOverScreen;
     public float levelTime = 60f;
     private float timerLevel = 0f;
     private float timer = 0f;
@@ -22,6 +25,7 @@ public class UIScript : MonoBehaviour
 
     void Update()
     {
+        // ---------- EKRAN ZATRZYMANEJ GRY ----------
         if(!GameManager.Instance.gamePaused)
         {
             // Ukrycie widoku zatrzymanej gry
@@ -40,6 +44,18 @@ public class UIScript : MonoBehaviour
             gamePausedScreen.SetActive(true);
         }
 
+        // ---------- EKRAN ZAKOÑCZONEJ GRY ----------
+        if (!GameManager.Instance.gameHasEnded)
+        {
+            // Ukrycie widoku zakoñczonej gry
+            gameOverScreen.SetActive(false);
+        }
+        else
+        {
+            // Pokazanie widoku zakoñczonej gry
+            gameOverScreen.SetActive(true);
+        }
+
         // Zwiêkszanie poziomu po okreœlonym czasie i jego wyœwietlanie
         if (timerLevel > levelTime)
         {
@@ -50,5 +66,11 @@ public class UIScript : MonoBehaviour
 
         // Wyœwietlanie uzyskanego wyniku
         scoreText.text = scoreTime.ToString("0");
+
+        // Wyœwietlanie iloœci ¿yæ
+        livesText.text = "Lives: " + GameManager.Instance.playerLives.ToString();
+
+        // Wyœwietlanie czy gracz posiada tarcze
+        shieldText.text = "Shield:  " + GameManager.Instance.playerShield.ToString();
     }
 }

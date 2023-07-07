@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
-    public int playerLives;
+    public EnvironmentMovement environmentMovement;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerLives = 3;
+        GameManager.Instance.playerLives = 2;
     }
 
     private void Update()
@@ -46,17 +45,21 @@ public class PlayerCollision : MonoBehaviour
 
     private void LoseLife()
     {
-        if (playerLives > 1)
+        if (GameManager.Instance.playerLives > 1)
         {
-            playerLives--;
-            Debug.Log("Aktualne ¿ycia: " + playerLives);
+            GameManager.Instance.playerLives--;
+            Debug.Log("Aktualne ¿ycia: " + GameManager.Instance.playerLives);
         }
-        else LoseGame();
+        else
+        {
+            LoseGame();
+        }
     }
 
     private void LoseGame()
     {
-        playerMovement.enabled = false;
+        GameManager.Instance.playerLives = 0;
+        environmentMovement.enabled = false;
         GameManager.Instance.GameOver();
     }
 }

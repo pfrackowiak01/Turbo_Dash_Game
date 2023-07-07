@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\merged_res\\release\\values_values.arsc.flat",
+            "outputFile": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\merged_res\\release\\values_values.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\src\\main\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "2,2",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values\\values.xml",
+                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -42,26 +42,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\merged_res\\release\\values-v28_values-v28.arsc.flat",
+            "outputFile": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\merged_res\\release\\values-v30_values-v30.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values-v28\\values-v28.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "8",
-                        "endOffsets": "229"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\merged_res\\release\\values-v30_values-v30.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values-v30\\values-v30.xml",
+                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values-v30\\values-v30.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
@@ -73,10 +57,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\merged_res\\release\\values-v21_values-v21.arsc.flat",
+            "outputFile": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\merged_res\\release\\values-v21_values-v21.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -84,6 +68,22 @@
                         "endLines": "3",
                         "endColumns": "8",
                         "endOffsets": "154"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\merged_res\\release\\values-v28_values-v28.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Pawel\\Documents\\Unity Games\\Turbo_Dash_BuildFixed\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\packaged_res\\release\\values-v28\\values-v28.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "8",
+                        "endOffsets": "229"
                     }
                 }
             ]

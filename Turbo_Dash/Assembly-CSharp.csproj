@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{08D5FA6A-E395-6A8A-81F2-AFA88A804720}</ProjectGuid>
+    <ProjectGuid>{5CC53660-A75D-A8CE-DF8B-97EA6FF88693}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -62,6 +62,7 @@
     <Compile Include="Assets\Code\Scripts\TubeMovement.cs" />
     <Compile Include="Assets\Code\Scripts\TubeManager.cs" />
     <Compile Include="Assets\Code\Scripts\UIScript.cs" />
+    <Compile Include="Assets\Code\Scripts\SpawningScripts\PillarScript.cs" />
     <Compile Include="Assets\Code\Scripts\GameManager.cs" />
     <Compile Include="Assets\Code\Scripts\ObstacleMovement.cs" />
     <Compile Include="Assets\Code\Scripts\FollowPlayer.cs" />

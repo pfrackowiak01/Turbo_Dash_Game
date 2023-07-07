@@ -28,5 +28,6 @@ public class WallScript : MonoBehaviour
                 transform.Translate(Vector3.down * moveDistance);
                 break;
         }
+
     }
 }

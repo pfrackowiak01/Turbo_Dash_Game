@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.MyCompany.Turbo_Dash"
+    package="com.BoomBit.Turbo_Dash"
     android:installLocation="preferExternal"
     android:versionCode="1"
     android:versionName="1.0.2" >
 
     <uses-sdk
         android:minSdkVersion="26"
-        android:targetSdkVersion="32" />
+        android:targetSdkVersion="33" />
 
     <supports-screens
         android:anyDensity="true"

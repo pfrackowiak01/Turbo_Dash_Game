@@ -29,22 +29,28 @@ public class GameManager : MonoBehaviour
     public bool gamePaused = true;
     public float restartDelay = 1f;
     public float gameLevel = 0;
+    public int playerLives = 2;
+    public bool playerShield = false;
+    public int safeTubes = 2;
 
-    public GameObject textGameOver;
-
-    public GameObject[] allWallPrefabs;                           // Tablica prefabów œcian
-    public GameObject[] allObstaclePrefabs;                       // Tablica prefabów przeszkód
-    public List<GameObject> wallPrefabs = new List<GameObject>(); // Lista aktualnie u¿ywanych œcian
+    public GameObject[] allWallPrefabs;                               // Tablica prefabów œcian
+    public GameObject[] allObstaclePrefabs;                           // Tablica prefabów przeszkód
+    public List<GameObject> wallPrefabs = new List<GameObject>();     // Lista aktualnie u¿ywanych œcian
     public List<GameObject> obstaclePrefabs = new List<GameObject>(); // Lista aktualnie u¿ywanych przeszkód
 
     // ----------------- GLOBAL FUNCTIONS ------------------
+    public void Start()
+    {
+        wallPrefabs.AddRange(FilterPrefabsByPrefix(allWallPrefabs, "lv1"));
+        obstaclePrefabs.AddRange(FilterPrefabsByPrefix(allObstaclePrefabs, "lv1"));
+    }
+
     public void GameOver()
     {
         if (gameHasEnded == false)
         {
             gameHasEnded = true;
             Debug.Log("GAME OVER");
-            textGameOver.SetActive(true);
             Invoke("RestartGame",restartDelay);
         }
     }
@@ -52,7 +58,8 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        textGameOver.SetActive(false);
+        gameHasEnded = false;
+        playerLives = 2;
     }
 
     public void GameLevelUp()
@@ -87,6 +94,6 @@ public class GameManager : MonoBehaviour
         int randomIndex = Random.Range(0, objectPrefabs.Count);
 
         // Wygeneruj nowy obiekt na podstawie wylosowanego prefabu
-        GameObject newObject = Instantiate(objectPrefabs[randomIndex], transform.position, Quaternion.identity, parrent);
+        GameObject newObject = Instantiate(objectPrefabs[randomIndex], parrent.position, parrent.rotation, parrent);
     }
 }
