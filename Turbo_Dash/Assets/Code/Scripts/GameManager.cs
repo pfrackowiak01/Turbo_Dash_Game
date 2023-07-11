@@ -25,24 +25,45 @@ public class GameManager : MonoBehaviour
     // =====================================================
 
     // ---------------------- GLOBALS ----------------------
-    public bool gameHasEnded = false;
-    public bool gamePaused = true;
-    public float restartDelay = 1f;
-    public float gameLevel = 0;
-    public int playerLives = 2;
-    public bool playerShield = false;
-    public int safeTubes = 2;
+    public bool gameHasEnded;
+    public bool gamePaused;
+    private float restartDelay = 1f;
+    public float gameLevel;
+    public int playerLives;
+    public bool playerShield;
+    public int safeTubes;
+    public bool boostEffectEnable;
+    public float playerGold = 0;
+    public float playerHighScore = 0;
+    public bool isFOVChanging;
 
     public GameObject[] allWallPrefabs;                               // Tablica prefabów œcian
     public GameObject[] allObstaclePrefabs;                           // Tablica prefabów przeszkód
+    public GameObject[] allGemPrefabs;                                // Tablica prefabów gemów
     public List<GameObject> wallPrefabs = new List<GameObject>();     // Lista aktualnie u¿ywanych œcian
     public List<GameObject> obstaclePrefabs = new List<GameObject>(); // Lista aktualnie u¿ywanych przeszkód
+    public List<GameObject> gemPrefabs = new List<GameObject>();      // Lista aktualnie u¿ywanych gemów
 
     // ----------------- GLOBAL FUNCTIONS ------------------
     public void Start()
     {
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        gameLevel = 1;
+        gameHasEnded = false;
+        gamePaused = true;
+        safeTubes = 3;
+        playerLives = 3;
+        playerShield = false;
+        boostEffectEnable = false;
+        isFOVChanging = false;
+
         wallPrefabs.AddRange(FilterPrefabsByPrefix(allWallPrefabs, "lv1"));
         obstaclePrefabs.AddRange(FilterPrefabsByPrefix(allObstaclePrefabs, "lv1"));
+        gemPrefabs.AddRange(FilterPrefabsByPrefix(allGemPrefabs, ""));
     }
 
     public void GameOver()
@@ -57,9 +78,17 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Zresetowanie postêpu
+        wallPrefabs = new List<GameObject>();
+        obstaclePrefabs = new List<GameObject>();
+        gemPrefabs = new List<GameObject>();
         gameHasEnded = false;
-        playerLives = 2;
+
+        // Ustawienie pocz¹tkowych wartoœci
+        StartGame();
+
+        // Uruchomienie gry od nowa
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GameLevelUp()
@@ -67,6 +96,7 @@ public class GameManager : MonoBehaviour
         gameLevel++;
         wallPrefabs.AddRange(FilterPrefabsByPrefix(allWallPrefabs, "lv" + gameLevel));
         obstaclePrefabs.AddRange(FilterPrefabsByPrefix(allObstaclePrefabs, "lv" + gameLevel));
+        //gemPrefabs.AddRange(FilterPrefabsByPrefix(allGemPrefabs, "lv" + gameLevel));
     }
 
     public List<GameObject> FilterPrefabsByPrefix(GameObject[] allPrefabs, string prefix)
@@ -95,5 +125,20 @@ public class GameManager : MonoBehaviour
 
         // Wygeneruj nowy obiekt na podstawie wylosowanego prefabu
         GameObject newObject = Instantiate(objectPrefabs[randomIndex], parrent.position, parrent.rotation, parrent);
+    }
+
+    public void ToggleVisibilityWithTag(string tagToToggle)
+    {
+        GameObject[] objectsToToggle = GameObject.FindGameObjectsWithTag(tagToToggle);
+
+        foreach (GameObject obj in objectsToToggle)
+        {
+            Renderer renderer = obj.GetComponent<Renderer>();
+
+            if (renderer != null)
+            {
+                renderer.enabled = !renderer.enabled;
+            }
+        }
     }
 }

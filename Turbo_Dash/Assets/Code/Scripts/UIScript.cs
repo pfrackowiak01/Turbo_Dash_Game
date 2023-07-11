@@ -10,6 +10,7 @@ public class UIScript : MonoBehaviour
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI shieldText;
+    public TextMeshProUGUI goldText;
     public GameObject gamePausedScreen;
     public GameObject gameOverScreen;
     public float levelTime = 60f;
@@ -25,8 +26,8 @@ public class UIScript : MonoBehaviour
 
     void Update()
     {
-        // ---------- EKRAN ZATRZYMANEJ GRY ----------
-        if(!GameManager.Instance.gamePaused)
+        // ==========> EKRAN ZATRZYMANEJ GRY <==========
+        if (!GameManager.Instance.gamePaused)
         {
             // Ukrycie widoku zatrzymanej gry
             gamePausedScreen.SetActive(false);
@@ -44,7 +45,7 @@ public class UIScript : MonoBehaviour
             gamePausedScreen.SetActive(true);
         }
 
-        // ---------- EKRAN ZAKOÑCZONEJ GRY ----------
+        // ==========> EKRAN ZAKOÑCZONEJ GRY <==========
         if (!GameManager.Instance.gameHasEnded)
         {
             // Ukrycie widoku zakoñczonej gry
@@ -56,6 +57,8 @@ public class UIScript : MonoBehaviour
             gameOverScreen.SetActive(true);
         }
 
+        // ==========> EKRAN ROZGRYWANEJ GRY <==========
+
         // Zwiêkszanie poziomu po okreœlonym czasie i jego wyœwietlanie
         if (timerLevel > levelTime)
         {
@@ -66,6 +69,9 @@ public class UIScript : MonoBehaviour
 
         // Wyœwietlanie uzyskanego wyniku
         scoreText.text = scoreTime.ToString("0");
+
+        // Wyœwietlanie iloœci z³ota
+        goldText.text = "Gold: " + GameManager.Instance.playerGold.ToString();
 
         // Wyœwietlanie iloœci ¿yæ
         livesText.text = "Lives: " + GameManager.Instance.playerLives.ToString();

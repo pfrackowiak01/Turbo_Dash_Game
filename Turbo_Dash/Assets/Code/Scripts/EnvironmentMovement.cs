@@ -8,80 +8,88 @@ public class EnvironmentMovement : MonoBehaviour
 {
     public TextMeshProUGUI gamePausedText;
 
-    public float rotationSpeed = 100f; // Prêdkoœæ poruszania siê gracza
+    private float rotationSpeed = 10f; // Prêdkoœæ poruszania siê gracza
     private float directionOfMovement; // Decyduje w któr¹ stronê porusza siê gracz (-1 lewo, 1 prawo, 0 do przodu)
+    private float screenWidth;         // Szerokoœæ ekranu
 
     private bool leftClicked;
     private bool rightClicked;
 
-    Vector3 movement;
-
-    private void Awake()
-    {
-        
-    }
+    private Quaternion initialRotation;
 
     void Start()
     {
+        // Pobiera szerokoœæ ekranu
+        screenWidth = Screen.width;
+
+        // Ustawia pocz¹tkowy kierunek obrotu;
         directionOfMovement = 0f;
-    }
 
-    private void FixedUpdate()
-    {
+        // W³¹cza ¿yroskop
+        Input.gyro.enabled = true;
 
+        // Ustala pocz¹tkow¹ rotacjê telefonu jako referencjê
+        initialRotation = Input.gyro.attitude;
     }
 
     void Update()
     {
-        // Zatrzymywanie i wznawianie rozgrywki za pomoc¹przycisku "Escape" lub "Space"
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
+        // ===================> GAME PAUSE SYSTEM <===================
+        // Zatrzymywanie i wznawianie rozgrywki za pomoc¹ "Escape" lub "Space"
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             if (GameManager.Instance.gamePaused) GameManager.Instance.gamePaused = false;
             else GameManager.Instance.gamePaused = true;
             gamePausedText.text = "Game Paused!\n Press \"Space\" or touch the screen\nto continue";
+            initialRotation = Input.gyro.attitude;
         }
+        // ===========================================================
 
+
+        // ===================> STEROWANIE RÊCZNE <===================
+        // Reset flag kierunków
+        leftClicked = false;
+        rightClicked = false;
+
+        // Ustawienie flagi kierunków za pomoc¹ wciœniêtych strza³ek
+        SetFlagsByKeyboard();
+
+        // Ustawienie flagi kierunków za pomoc¹ doktniêæ ekranu
+        SetFlagsByTouchscreen();
+
+        // Obliczenie wartoœci obrotu z ustawionych flag i wykonanie go
+        PlayerMovementByDirections();
+        // -----------------------------------------------------------
+
+
+        // =================> STEROWANIE ¯YROSKOPEM <=================
+        // Obliczenie wartoœci obrotu ze ¿yroskopu i wykonanie go
+        PlayerMovementByGyroscope();
+        // -----------------------------------------------------------
+    }
+
+    private void SetFlagsByKeyboard()
+    {
         if (Input.GetKey(KeyCode.LeftArrow)) leftClicked = true;
-        else leftClicked = false;
         if (Input.GetKey(KeyCode.RightArrow)) rightClicked = true;
-        else rightClicked = false;
+    }
 
+    private void SetFlagsByTouchscreen()
+    {
         // Pobieranie wejœcia ruchu gracza z telefonu (lewa/prawa stron ekranu)
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.touchCount > 0)
         {
-            // Pierwsze klikniêcie, aby wystartowaæ gre ORAZ wystarczy klikn¹æ lub doktn¹æ ekranu, aby odpauzowaæ
-            if (GameManager.Instance.gamePaused) GameManager.Instance.gamePaused = false;
-
             // Dla ka¿dego klikniêcia/doktniêcia sprawdza pozycje (czy by³o po lewej czy po prawej)
             foreach (Touch touch in Input.touches)
             {
-                Debug.Log("Klikniêto coœ");
-                CheckClickPosition(touch.position);
+                // Sprawdza pozycje klikniêcia na ekranie (lewo/prawo) i zaznacza odpowiedni¹ flagê
+                if (touch.position.x < screenWidth / 2) leftClicked = true;
+                else rightClicked = true;
             }
         }
-
-        // Sprawdzanie kierunku poruszania siê gracza
-        DirectionOfPlayerMovement();
-
-        // Oblicz wartoœæ obrotu na podstawie wartoœci osi poziomej
-        float rotationAmount = directionOfMovement * rotationSpeed * Time.deltaTime;
-
-        // Obróæ tubê wokó³ osi Z
-        if (!GameManager.Instance.gamePaused) transform.Rotate(0, 0, rotationAmount);
-
-        //transform.rotation = Quaternion.Euler(0f, 0f, rotationAmount);
     }
 
-    // Sprawdza pozycje klikniêcia na ekranie (lewo/prawo) i zaznacza odpowiedni¹ flagê
-    private void CheckClickPosition(Vector2 clickPosition)
-    {
-        float screenWidth = Screen.width;
-
-        if (clickPosition.x < screenWidth / 2) leftClicked = true;
-        else rightClicked = true;
-    }
-
-    private void DirectionOfPlayerMovement()
+    private void PlayerMovementByDirections()
     {
         if (leftClicked && rightClicked || !leftClicked && !rightClicked)
         {
@@ -91,12 +99,33 @@ public class EnvironmentMovement : MonoBehaviour
         else if (leftClicked)
         {
             Debug.Log("Klikniêto lew¹ czêœæ ekranu.");
-            directionOfMovement = 1f;
+            directionOfMovement = 10f;
         }
         else if (rightClicked)
         {
             Debug.Log("Klikniêto praw¹ czêœæ ekranu.");
-            directionOfMovement = -1f;
+            directionOfMovement = -10f;
         }
+
+        // Oblicz wartoœæ obrotu na podstawie wartoœci osi poziomej
+        float rotationAmount = directionOfMovement * rotationSpeed * Time.deltaTime;
+
+        // Obróæ rurê o obliczon¹ wartoœæ wokó³ osi Z
+        if (!GameManager.Instance.gamePaused) transform.Rotate(0, 0, rotationAmount);
+    }
+
+    private void PlayerMovementByGyroscope()
+    {
+        // Pobierz wartoœæ przechylenia telefonu
+        Quaternion currentRotation = Quaternion.Inverse(initialRotation) * Input.gyro.attitude;
+
+        // Ogranicz przechylenie do osi Z (lewo/prawo)
+        float tiltAngle = Mathf.Clamp(currentRotation.z * Mathf.Rad2Deg, -20f, 20f);
+
+        // Oblicz k¹t obrotu na podstawie przechylenia
+        float rotationAmount = tiltAngle * rotationSpeed * Time.deltaTime;
+
+        // Obróæ rurê o obliczon¹ wartoœæ wokó³ osi Z
+        if (!GameManager.Instance.gamePaused) transform.Rotate(0, 0, rotationAmount);
     }
 }

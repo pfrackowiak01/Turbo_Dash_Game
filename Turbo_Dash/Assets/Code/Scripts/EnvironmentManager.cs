@@ -22,7 +22,6 @@ public class EnvironmentManager : MonoBehaviour
         for (int i = 0; i <= 5; i++)
         {
             spawnTube(tubeLength * i);
-            if (GameManager.Instance.safeTubes > 0) GameManager.Instance.safeTubes--;
         }
     }
 

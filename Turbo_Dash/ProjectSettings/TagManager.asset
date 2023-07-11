@@ -9,6 +9,12 @@ TagManager:
   - Obstacle
   - Tube
   - GameOver
+  - Heart
+  - Shield
+  - Gold
+  - Bonus
+  - Boost
+  - VisualEffectShield
   layers:
   - Default
   - TransparentFX
@@ -18,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Post Processing
   - 
   - 
   - 

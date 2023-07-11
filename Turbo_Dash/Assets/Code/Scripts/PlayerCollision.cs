@@ -2,33 +2,48 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class PlayerCollision : MonoBehaviour
 {
     public EnvironmentMovement environmentMovement;
+    public GameObject explosion;
+    private GameObject detectedObject;
+
+    private float boostEffectDuration = 10; // Czas trwania efektu przyspieszenia
+    private float lastBoostTime; // Ostatni zapisany czas wziï¿½cia efektu "Boost"
+
+    private Vector3 destroyedObjectPosition = new Vector3(0,-4,1);
 
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.playerLives = 2;
+
     }
 
     private void Update()
     {
-        // Zakoñczenie gry jeœli gracz wypad³ poza mape
+        // Zakoï¿½czenie gry jeï¿½li gracz wypadï¿½ poza mape
         if (transform.position.y < -10f) LoseGame();
     }
-    private void OnCollisionEnter(Collision collision)
+
+
+    private void OnTriggerEnter(Collider collision)
     {
-        switch (collision.collider.tag)
+        switch (collision.GetComponent<Collider>().tag)
         {
+            // -------------- STRUCTURES --------------
             case "Wall":
                 Debug.Log("Wall detected.");
+
+                detectedObject = collision.gameObject;
                 LoseLife();
                 break;
 
             case "Obstacle":
                 Debug.Log("Obstacle detected.");
+
+                detectedObject = collision.gameObject;
                 LoseLife();
                 break;
 
@@ -37,18 +52,66 @@ public class PlayerCollision : MonoBehaviour
 
                 break;
 
+            // ----------------- GEMS -----------------
+            case "Boost":
+                Debug.Log("Boost gem collected.");
+
+                detectedObject = collision.gameObject;
+                BoostEffect();
+                break;
+
+            case "Heart":
+                Debug.Log("Heart gem collected.");
+
+                detectedObject = collision.gameObject;
+                HeartEffect();
+                break;
+
+            case "Shield":
+                Debug.Log("Shield gem collected.");
+
+                detectedObject = collision.gameObject;
+                ShieldEffect();
+                break;
+
+            case "Gold":
+                Debug.Log("Gold gem collected.");
+
+                detectedObject = collision.gameObject;
+                GoldEffect();
+                break;
+
+            case "Bonus":
+                Debug.Log("Bonus gem collected.");
+
+                detectedObject = collision.gameObject;
+                BonusEffect();
+                break;
+
+            // -------------- SOMETHING --------------
             default:
                 Debug.Log("Something detected?");
+
                 break;
         }
     }
 
     private void LoseLife()
     {
-        if (GameManager.Instance.playerLives > 1)
+        if (GameManager.Instance.playerShield == true)
         {
+            PlayExplosionEffect(destroyedObjectPosition);
+            Destroy(detectedObject);
+            GameManager.Instance.playerShield = false;
+            GameManager.Instance.ToggleVisibilityWithTag("VisualEffectShield");
+            Debug.Log("Tarcza zniszczona");
+        }
+        else if (GameManager.Instance.playerLives > 1)
+        {
+            PlayExplosionEffect(destroyedObjectPosition);
+            Destroy(detectedObject);
             GameManager.Instance.playerLives--;
-            Debug.Log("Aktualne ¿ycia: " + GameManager.Instance.playerLives);
+            Debug.Log("Aktualne ï¿½ycia: " + GameManager.Instance.playerLives);
         }
         else
         {
@@ -58,8 +121,83 @@ public class PlayerCollision : MonoBehaviour
 
     private void LoseGame()
     {
+        PlayExplosionEffect(destroyedObjectPosition);
+        Destroy(gameObject);
         GameManager.Instance.playerLives = 0;
-        environmentMovement.enabled = false;
+        environmentMovement.enabled = false;    //blokowanie poruszania siï¿½ na boki
         GameManager.Instance.GameOver();
     }
+
+    private void PlayExplosionEffect(Vector3 position)
+    {
+        Instantiate(explosion, position, Quaternion.identity);
+
+    }
+
+    // ===========================> GEM EFFECTS <===========================
+    private void BoostEffect()
+    {
+        PlayExplosionEffect(destroyedObjectPosition);
+        Destroy(detectedObject);
+
+        // Sprawdzanie, czy efekt przyspieszenia jest juï¿½ aktywny
+        if (Time.time - lastBoostTime < boostEffectDuration)
+        {
+            // Jeï¿½li tak, przedï¿½uï¿½ czas trwania efektu
+            lastBoostTime = Time.time;
+        }
+        else
+        {
+            // Jeï¿½li nie, uruchom nowy efekt
+            GameManager.Instance.boostEffectEnable = true;
+            GameManager.Instance.isFOVChanging = true;
+            lastBoostTime = Time.time;
+        }
+
+        Invoke("TurnOffBoostEffect", boostEffectDuration); // Efekt Boost sam wyï¿½ï¿½czy siï¿½ po okreï¿½lonym czasie
+    }
+
+    private void TurnOffBoostEffect()
+    {
+        // Sprawdzanie, czy nie ma juï¿½ aktywnego efektu przyspieszenia
+        if (Time.time - lastBoostTime >= boostEffectDuration)
+        {
+            GameManager.Instance.boostEffectEnable = false;
+            GameManager.Instance.isFOVChanging = true;
+        }
+    }
+    
+    private void HeartEffect()
+    {
+        PlayExplosionEffect(destroyedObjectPosition);
+        Destroy(detectedObject);
+        if (GameManager.Instance.playerLives < 3) GameManager.Instance.playerLives++;
+    }
+
+    private void ShieldEffect()
+    {
+        PlayExplosionEffect(destroyedObjectPosition);
+        Destroy(detectedObject);
+        if (GameManager.Instance.playerShield == false)
+        {
+            GameManager.Instance.playerShield = true;
+            GameManager.Instance.ToggleVisibilityWithTag("VisualEffectShield");
+        }
+        
+    }
+
+    private void GoldEffect()
+    {
+        PlayExplosionEffect(destroyedObjectPosition);
+        Destroy(detectedObject);
+        GameManager.Instance.playerGold++;
+    }
+
+    private void BonusEffect()
+    {
+        PlayExplosionEffect(destroyedObjectPosition);
+        Destroy(detectedObject);
+        GameManager.Instance.playerGold = GameManager.Instance.playerGold + 10;
+    }
+    // =====================================================================
 }
