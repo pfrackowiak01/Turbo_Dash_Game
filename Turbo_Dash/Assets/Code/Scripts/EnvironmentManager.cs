@@ -6,47 +6,28 @@ public class EnvironmentManager : MonoBehaviour
 {
     public GameObject tube;
     public Transform parrent;
-    public float spawnRate = 1f;
-    public float spawnTubeZone = 240f;
-    public float deadTubeZone = -60f;
-    private int tubeLength = 60;
-    private GameObject[] tubesArray;
-
-    private void Awake()
-    {
-
-    }
+    private float timer = 0;
 
     void Start()
     {
-        for (int i = 0; i <= 5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            spawnTube(tubeLength * i);
+            spawnTube(GameManager.Instance.tubeLength * i);
         }
     }
 
     private void FixedUpdate()
     {
-        // ZnajdŸ wszystkie obiekty z danym tagiem
-        tubesArray = GameObject.FindGameObjectsWithTag("Tube");
 
-        // Policz liczbê obiektów
-        int tubeCount = tubesArray.Length;
+        if (!GameManager.Instance.gamePaused) timer += Time.deltaTime;
 
-        if (tubeCount < 5)
+        if (timer >= GameManager.Instance.tubeSpawnRate - 0.01f)
         {
-            spawnTube(spawnTubeZone - 1);
+            spawnTube(GameManager.Instance.tubeSpawnZone);
+            timer = 0;
         }
-
-        // Przywracanie pustej tablicy
-        tubesArray = null;
-    }
-
-    void Update()
-    {
-
-      
-
+        
+        
     }
 
     void spawnTube(float z)

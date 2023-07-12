@@ -7,20 +7,21 @@ public class FollowPlayer : MonoBehaviour
 {
 
     public Transform player;
-    public Vector3 offset;
-    public Vector3 defaultOffset;
-    public Vector3 boostOffset;
-    public float smoothSpeed;
-
-    public float startFOV; // Pocz¹tkowe pole widzenia kamery
-    public float targetFOV; // Docelowe pole widzenia kamery
-    public float defaultFOV = 30f; // Standardowe pole widzenia kamery
-    public float boostFOV = 60f; // Na przyspieszeniu pole widzenia kamery
-    public float changeDuration = 2f; // Czas trwania zmiany w sekundach
-    private float currentFOV; // Aktualne pole widzenia kamery
-    private float changeTimer = 2f; // Czas trwania zmiany
     private Camera camera;
 
+    public Vector3 startOffset;
+    public Vector3 targetOffset;
+    public Vector3 defaultOffset;
+    public Vector3 boostOffset;
+    public Vector3 currentOffset;
+
+    private float startFOV;            // Pocz¹tkowe pole widzenia kamery
+    private float targetFOV;           // Docelowe pole widzenia kamery
+    private float defaultFOV = 40f;    // Standardowe pole widzenia kamery
+    private float boostFOV = 90f;      // Na przyspieszeniu pole widzenia kamery
+    private float changeDuration = 2f; // Czas trwania zmiany w sekundach
+    private float currentFOV;         // Aktualne pole widzenia kamery
+    private float changeTimer = 2f;   // Czas trwania zmiany
 
     void Start()
     {
@@ -28,11 +29,11 @@ public class FollowPlayer : MonoBehaviour
         currentFOV = defaultFOV;
         camera.fieldOfView = currentFOV;
 
-        defaultOffset = new Vector3(0f, 1f, -7f);
-        boostOffset = new Vector3(0f, 0.8f, -8f);
-        smoothSpeed = 8f;
+        defaultOffset = player.position + new Vector3(0f, 1f, -6f);
+        boostOffset = player.position + new Vector3(0f, 0.7f, -2f);
+        currentOffset = defaultOffset;
 
-        offset = defaultOffset;
+        transform.position = currentOffset;
     }
 
     void Update()
@@ -46,29 +47,35 @@ public class FollowPlayer : MonoBehaviour
                 GameManager.Instance.isFOVChanging = false;
             }
 
-            //  interpolujemy wartoœæ pola widzenia za pomoc¹ funkcji Mathf.Lerp
+            // Interpolujemy wartoœæ pola widzenia za pomoc¹ funkcji Mathf.Lerp i Vector3.Lerp
             if (changeTimer < changeDuration)
             {
                 float t = changeTimer / changeDuration;
+
                 currentFOV = Mathf.Lerp(startFOV, targetFOV, t);
                 camera.fieldOfView = currentFOV;
 
-                changeTimer += Time.deltaTime;
+                currentOffset = Vector3.Lerp(startOffset, targetOffset, t);
+                transform.position = currentOffset;
+
+                if(!GameManager.Instance.gamePaused) changeTimer += Time.deltaTime;
 
                 if (changeTimer >= changeDuration)
                 {
                     camera.fieldOfView = targetFOV;
+                    transform.position = targetOffset;
                     changeTimer = changeDuration;
                 }
             }
 
+            // Obliczenie wychylenie kamery przy poruszaniu gracza
+            //offset.x = GameManager.Instance.rotationAmount;
+
             // Obliczanie docelowej pozycji kamery
-            Vector3 desiredPosition = player.position + offset;
+            //Vector3 desiredPosition = player.position + offset;
 
             // Interpolacja liniowa pomiêdzy obecn¹ pozycj¹ kamery a docelow¹ pozycj¹
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
-
-            transform.position = smoothedPosition; // Ustaw pozycjê kamery na zinterpolowan¹ pozycjê
+            //Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         }
     }
 
@@ -76,13 +83,15 @@ public class FollowPlayer : MonoBehaviour
     {
         if (GameManager.Instance.boostEffectEnable)
         {
-            offset = boostOffset;
+            startOffset = defaultOffset;
+            targetOffset = boostOffset;
             startFOV = defaultFOV;
             targetFOV = boostFOV;
         }
         else
         {
-            offset = defaultOffset;
+            startOffset = boostOffset;
+            targetOffset = defaultOffset;
             startFOV = boostFOV;
             targetFOV = defaultFOV;
         }

@@ -5,29 +5,20 @@ using UnityEngine;
 
 public class TubeMovement : MonoBehaviour
 {
-    public float moveSpeed = 50f; // Prêdkoœæ poruszania siê rury
-
-    private float forwardForce = -1f; // kierunek poruszania siê rury
-    private Vector3 movement;
-    public float deadZone = -60;
-    //private Vector3 spawnZone = new Vector3(0f, 0f, 240f);
-    //private float tubeLength = 60;
-
-    void Start()
-    {
-
-    }
+    private float forwardForce = -1f; // Kierunek poruszania siê rury
+    private Vector3 movement;         // Po³o¿enie rury
 
     void FixedUpdate()
     {
-        movement = new Vector3(0f, 0f, forwardForce) * moveSpeed * Time.deltaTime;
+        // Obliczanie nowego po³o¿enia w którym pojawi siê rura
+        movement = new Vector3(0f, 0f, forwardForce) * GameManager.Instance.tubeMoveSpeed * Time.deltaTime;
 
         // Aktualizacja pozycji rury
         if (!GameManager.Instance.gamePaused) transform.position += movement;
 
-        if (transform.position.z < deadZone)
+        // Zniszcz rure jeœli przekroczy DeadZone
+        if (transform.position.z < GameManager.Instance.tubeDeadZone)
         {
-            //transform.position = spawnZone;
             Debug.Log("Tube destroyed");
             Destroy(gameObject);
         }

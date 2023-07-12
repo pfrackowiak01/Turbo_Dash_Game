@@ -108,10 +108,10 @@ public class EnvironmentMovement : MonoBehaviour
         }
 
         // Oblicz wartoœæ obrotu na podstawie wartoœci osi poziomej
-        float rotationAmount = directionOfMovement * rotationSpeed * Time.deltaTime;
+        GameManager.Instance.rotationAmount = directionOfMovement * rotationSpeed * Time.deltaTime;
 
         // Obróæ rurê o obliczon¹ wartoœæ wokó³ osi Z
-        if (!GameManager.Instance.gamePaused) transform.Rotate(0, 0, rotationAmount);
+        if (!GameManager.Instance.gamePaused) transform.Rotate(0, 0, GameManager.Instance.rotationAmount);
     }
 
     private void PlayerMovementByGyroscope()
@@ -123,9 +123,9 @@ public class EnvironmentMovement : MonoBehaviour
         float tiltAngle = Mathf.Clamp(currentRotation.z * Mathf.Rad2Deg, -20f, 20f);
 
         // Oblicz k¹t obrotu na podstawie przechylenia
-        float rotationAmount = tiltAngle * rotationSpeed * Time.deltaTime;
+        GameManager.Instance.rotationAmount = tiltAngle * rotationSpeed * Time.deltaTime;
 
         // Obróæ rurê o obliczon¹ wartoœæ wokó³ osi Z
-        if (!GameManager.Instance.gamePaused) transform.Rotate(0, 0, rotationAmount);
+        if (!GameManager.Instance.gamePaused) transform.Rotate(0, 0, GameManager.Instance.rotationAmount);
     }
 }

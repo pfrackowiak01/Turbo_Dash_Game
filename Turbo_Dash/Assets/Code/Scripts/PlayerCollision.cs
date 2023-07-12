@@ -98,6 +98,10 @@ public class PlayerCollision : MonoBehaviour
 
     private void LoseLife()
     {
+        // Efekt potrząśnięcia kamery "Shake"
+        AnimationManager.Call.CameraShake();
+
+        // Sprawdzenie czy gracz ma tarcze i ją traci
         if (GameManager.Instance.playerShield == true)
         {
             PlayExplosionEffect(destroyedObjectPosition);
@@ -106,6 +110,7 @@ public class PlayerCollision : MonoBehaviour
             GameManager.Instance.ToggleVisibilityWithTag("VisualEffectShield");
             Debug.Log("Tarcza zniszczona");
         }
+        // Sprawdzenie czy gracz ma życia i traci jedno
         else if (GameManager.Instance.playerLives > 1)
         {
             PlayExplosionEffect(destroyedObjectPosition);
@@ -113,6 +118,7 @@ public class PlayerCollision : MonoBehaviour
             GameManager.Instance.playerLives--;
             Debug.Log("Aktualne �ycia: " + GameManager.Instance.playerLives);
         }
+        // Jak gracz już nie ma żyć to przegrywa gre
         else
         {
             LoseGame();

@@ -62,17 +62,18 @@
     <Compile Include="Assets\Code\Scripts\TubeMovement.cs" />
     <Compile Include="Assets\Code\Scripts\TubeManager.cs" />
     <Compile Include="Assets\Code\Scripts\UIScript.cs" />
-    <Compile Include="Assets\Code\Scripts\Animations\DestroyParticleSystem.cs" />
     <Compile Include="Assets\Code\Scripts\GameManager.cs" />
     <Compile Include="Assets\Code\Scripts\ObstacleMovement.cs" />
     <Compile Include="Assets\Code\Scripts\FollowPlayer.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Code\Scripts\SpawningScripts\RandomArrangement.cs" />
     <Compile Include="Assets\Code\Scripts\EnvironmentManager.cs" />
+    <Compile Include="Assets\Code\Scripts\AnimationScripts\GemAnimationScript.cs" />
     <Compile Include="Assets\Code\Scripts\EnvironmentMovement.cs" />
     <Compile Include="Assets\Code\Scripts\PlayerCollision.cs" />
-    <Compile Include="Assets\Code\Scripts\Animations\GemAnimationScript.cs" />
     <Compile Include="Assets\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
+    <Compile Include="Assets\Code\Scripts\AnimationScripts\DestroyParticleSystem.cs" />
+    <Compile Include="Assets\Code\Scripts\AnimationScripts\AnimationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

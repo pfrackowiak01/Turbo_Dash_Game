@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
     // ===================== SINGLETON =====================
     // Deklaruje w³aœciwoœæ statyczn¹ o nazwie "Instance".
     public static GameManager Instance { get; private set; }
@@ -24,18 +25,27 @@ public class GameManager : MonoBehaviour
     }
     // =====================================================
 
+
     // ---------------------- GLOBALS ----------------------
     public bool gameHasEnded;
     public bool gamePaused;
-    private float restartDelay = 1f;
     public float gameLevel;
+    private float restartDelay = 2f;
+    
     public int playerLives;
     public bool playerShield;
-    public int safeTubes;
-    public bool boostEffectEnable;
     public float playerGold = 0;
     public float playerHighScore = 0;
+    public bool boostEffectEnable;
     public bool isFOVChanging;
+    public float rotationAmount;
+
+    public int safeTubes;       // 3                                  // Iloœæ bezpiecznych rur bez przeszkód na pocz¹tku gry
+    public float tubeLength;    // 60                                 // D³ugoœæ pojedynczej rury
+    public float tubeDeadZone;  // -60                                // Miejsce usuniêcia rury
+    public float tubeSpawnZone; // 240                                // Miejsce pojawienia siê rury
+    public float tubeMoveSpeed; // 50                                 // Prêdkoœæ poruszania siê rury
+    public float tubeSpawnRate; // 1.2                                // Co ile sekund ma siê pojawiæ nowa rura
 
     public GameObject[] allWallPrefabs;                               // Tablica prefabów œcian
     public GameObject[] allObstaclePrefabs;                           // Tablica prefabów przeszkód
@@ -44,25 +54,38 @@ public class GameManager : MonoBehaviour
     public List<GameObject> obstaclePrefabs = new List<GameObject>(); // Lista aktualnie u¿ywanych przeszkód
     public List<GameObject> gemPrefabs = new List<GameObject>();      // Lista aktualnie u¿ywanych gemów
 
+
     // ----------------- GLOBAL FUNCTIONS ------------------
     public void Start()
     {
+        // Ustawienie pocz¹tkowych wartoœci
         StartGame();
+
+        // Przypisanie odpowiednich obiektów w AnimationManager
+        AnimationManager.Call.Presets();
     }
 
     public void StartGame()
     {
-        gameLevel = 1;
         gameHasEnded = false;
         gamePaused = true;
-        safeTubes = 3;
+        gameLevel = 1;
+
         playerLives = 3;
         playerShield = false;
         boostEffectEnable = false;
         isFOVChanging = false;
+        rotationAmount = 0;
 
-        wallPrefabs.AddRange(FilterPrefabsByPrefix(allWallPrefabs, "lv1"));
-        obstaclePrefabs.AddRange(FilterPrefabsByPrefix(allObstaclePrefabs, "lv1"));
+        safeTubes = 3;
+        tubeLength = 60f;
+        tubeDeadZone = -tubeLength;
+        tubeSpawnZone = tubeLength * 4f;
+        tubeMoveSpeed = 50f;
+        tubeSpawnRate = tubeLength / tubeMoveSpeed;
+
+        wallPrefabs.AddRange(FilterPrefabsByPrefix(allWallPrefabs, "lv1_"));
+        obstaclePrefabs.AddRange(FilterPrefabsByPrefix(allObstaclePrefabs, "lv1_"));
         gemPrefabs.AddRange(FilterPrefabsByPrefix(allGemPrefabs, ""));
     }
 
@@ -89,14 +112,19 @@ public class GameManager : MonoBehaviour
 
         // Uruchomienie gry od nowa
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        // Przypisanie odpowiednich obiektów w AnimationManager
+        AnimationManager.Call.Presets();
     }
 
     public void GameLevelUp()
     {
         gameLevel++;
-        wallPrefabs.AddRange(FilterPrefabsByPrefix(allWallPrefabs, "lv" + gameLevel));
-        obstaclePrefabs.AddRange(FilterPrefabsByPrefix(allObstaclePrefabs, "lv" + gameLevel));
-        //gemPrefabs.AddRange(FilterPrefabsByPrefix(allGemPrefabs, "lv" + gameLevel));
+        tubeMoveSpeed = tubeMoveSpeed * 1.1f;
+        tubeSpawnRate = tubeLength / tubeMoveSpeed;
+        wallPrefabs.AddRange(FilterPrefabsByPrefix(allWallPrefabs, "lv" + gameLevel + "_"));
+        obstaclePrefabs.AddRange(FilterPrefabsByPrefix(allObstaclePrefabs, "lv" + gameLevel + "_"));
+        //gemPrefabs.AddRange(FilterPrefabsByPrefix(allGemPrefabs, "lv" + gameLevel  + "_"));
     }
 
     public List<GameObject> FilterPrefabsByPrefix(GameObject[] allPrefabs, string prefix)

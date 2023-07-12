@@ -13,10 +13,10 @@ public class UIScript : MonoBehaviour
     public TextMeshProUGUI goldText;
     public GameObject gamePausedScreen;
     public GameObject gameOverScreen;
-    public float levelTime = 60f;
-    private float timerLevel = 0f;
+
     private float timer = 0f;
     private float scoreTime = 0f;
+    private float distanceToLevelUp = 1000f;
 
     void Start()
     {
@@ -27,44 +27,49 @@ public class UIScript : MonoBehaviour
     void Update()
     {
         // ==========> EKRAN ZATRZYMANEJ GRY <==========
-        if (!GameManager.Instance.gamePaused)
+        if (GameManager.Instance.gamePaused)
+        {
+            // Pokazanie widoku zatrzymanej gry
+            gamePausedScreen.SetActive(true);
+        }
+        // -------------> SYSTEM PUNKTÓW <--------------
+        else
         {
             // Ukrycie widoku zatrzymanej gry
             gamePausedScreen.SetActive(false);
 
             // Up³yw czasu
             timer += Time.deltaTime;
-            timerLevel += Time.deltaTime;
 
             // Obliczanie wyniku na podstawie czasu
-            scoreTime = timer * 13;
+            scoreTime = timer * 17 * (GameManager.Instance.gameLevel/10 + 1);
         }
-        else
-        {
-            // Pokazanie widoku zatrzymanej gry
-            gamePausedScreen.SetActive(true);
-        }
+        // ---------------------------------------------
+
 
         // ==========> EKRAN ZAKOÑCZONEJ GRY <==========
-        if (!GameManager.Instance.gameHasEnded)
-        {
-            // Ukrycie widoku zakoñczonej gry
-            gameOverScreen.SetActive(false);
-        }
-        else
+        if (GameManager.Instance.gameHasEnded)
         {
             // Pokazanie widoku zakoñczonej gry
             gameOverScreen.SetActive(true);
         }
+        else
+        {
+            // Ukrycie widoku zakoñczonej gry
+            gameOverScreen.SetActive(false);
+        }
+        // =============================================
+
 
         // ==========> EKRAN ROZGRYWANEJ GRY <==========
 
-        // Zwiêkszanie poziomu po okreœlonym czasie i jego wyœwietlanie
-        if (timerLevel > levelTime)
+        // Zwiêkszenie poziomu po okreœlonym pokonanym dystansie
+        if (scoreTime > GameManager.Instance.gameLevel * distanceToLevelUp)
         {
             GameManager.Instance.GameLevelUp();
+
+            // Wyœwietlanie aktualnego poziomu
             levelText.text = "Level: " + GameManager.Instance.gameLevel.ToString();
-            timerLevel = 0f;
         }
 
         // Wyœwietlanie uzyskanego wyniku
@@ -78,5 +83,6 @@ public class UIScript : MonoBehaviour
 
         // Wyœwietlanie czy gracz posiada tarcze
         shieldText.text = "Shield:  " + GameManager.Instance.playerShield.ToString();
+        // =============================================
     }
 }
