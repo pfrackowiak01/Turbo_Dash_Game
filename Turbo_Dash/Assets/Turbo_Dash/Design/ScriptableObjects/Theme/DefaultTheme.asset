@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241a979eed12c8d4bbd3c331eeab9c36, type: 3}
+  m_Name: DefaultTheme
+  m_EditorClassIdentifier: 
+  index: 0
+  themeName: Default
+  unlocked: 1
+  tubeInside: {fileID: 2100000, guid: dda38350e7fa241459d31fb5fc495e11, type: 2}
+  tubeOutside: {fileID: 2100000, guid: a224c2576c850b44e84a79e54e0e44db, type: 2}
+  wall: {fileID: 2100000, guid: f4bcb60aa6a1037448b380d7d51bd438, type: 2}
+  obstacle: {fileID: 2100000, guid: 221803e36e8d3e148874cc3e317ec7fa, type: 2}
+  space: {fileID: 2100000, guid: b17bf01cb8241d241a832f9b3f192435, type: 2}
+  player: {fileID: 2100000, guid: 20fcd09362e1a5342bb1812fc982801f, type: 2}
+  trail: {fileID: 2100000, guid: 3d84a156a521ec040bf2400c8a2da2b1, type: 2}

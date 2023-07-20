@@ -12,9 +12,11 @@ TagManager:
   - Heart
   - Shield
   - Gold
-  - Bonus
   - Boost
   - VisualEffectShield
+  - VisualEffectImmortality
+  - Diamond
+  - Portal
   layers:
   - Default
   - TransparentFX

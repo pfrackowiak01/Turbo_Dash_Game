@@ -1,19 +1,23 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AnimationManager
     - DestroyParticleSystem
     - EnvironmentManager
     - EnvironmentMovement
     - FollowPlayer
     - GameManager
+    - Gem
     - GemAnimationScript
+    - ImmortalityEffect
+    - Obstacle
     - ObstacleMovement
     - PlayerCollision
-    - PlayerMovement
     - RandomArrangement
     - TubeManager
     - TubeMovement
     - UIScript
+    - Wall
     Unity.AdaptivePerformance.Editor.dll:
     - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
     Unity.AdaptivePerformance.Samsung.Android.dll:
@@ -38,12 +42,6 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.PostProcessVolume
     - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
     - UnityEngine.Rendering.PostProcessing.Vignette
-    Unity.Recorder.Editor.dll:
-    - UnityEditor.Recorder.MovieRecorderEditor
-    - UnityEditor.Recorder.MovieRecorderSettings
-    - UnityEditor.Recorder.RecorderControllerSettings
-    - UnityEditor.Recorder.RecorderPreferencesSettings
-    - UnityEditor.Recorder.RecorderSettingsPrefsEditor
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
@@ -57,6 +55,12 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -117,7 +121,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
   methodsToPreserve: []
   sceneClasses:
-    Assets/Scenes/DeafultLevel.unity:
+    Assets/Turbo_Dash/Design/Scenes/DeafultLevel.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -144,9 +148,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 72
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 89
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -155,64 +165,70 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16718}
     - Class: 114
-      Script: {instanceID: 17346}
+      Script: {instanceID: 17070}
     - Class: 114
-      Script: {instanceID: 17568}
+      Script: {instanceID: 17348}
     - Class: 114
-      Script: {instanceID: 17702}
+      Script: {instanceID: 17570}
     - Class: 114
-      Script: {instanceID: 17820}
+      Script: {instanceID: 17704}
     - Class: 114
-      Script: {instanceID: 18032}
+      Script: {instanceID: 17822}
     - Class: 114
-      Script: {instanceID: 18456}
+      Script: {instanceID: 18034}
     - Class: 114
-      Script: {instanceID: 18852}
+      Script: {instanceID: 18458}
     - Class: 114
-      Script: {instanceID: 19408}
+      Script: {instanceID: 18822}
     - Class: 114
-      Script: {instanceID: 19462}
+      Script: {instanceID: 18856}
     - Class: 114
-      Script: {instanceID: 19466}
+      Script: {instanceID: 19410}
     - Class: 114
-      Script: {instanceID: 19742}
+      Script: {instanceID: 19464}
     - Class: 114
-      Script: {instanceID: 19932}
+      Script: {instanceID: 19468}
     - Class: 114
-      Script: {instanceID: 20046}
+      Script: {instanceID: 19744}
     - Class: 114
-      Script: {instanceID: 20202}
+      Script: {instanceID: 19934}
     - Class: 114
-      Script: {instanceID: 20500}
+      Script: {instanceID: 20048}
     - Class: 114
-      Script: {instanceID: 21100}
+      Script: {instanceID: 20204}
     - Class: 114
-      Script: {instanceID: 21136}
+      Script: {instanceID: 20504}
     - Class: 114
-      Script: {instanceID: 21268}
+      Script: {instanceID: 21002}
     - Class: 114
-      Script: {instanceID: 21620}
+      Script: {instanceID: 21106}
     - Class: 114
-      Script: {instanceID: 21654}
+      Script: {instanceID: 21142}
     - Class: 114
-      Script: {instanceID: 22034}
+      Script: {instanceID: 21270}
     - Class: 114
-      Script: {instanceID: 22292}
+      Script: {instanceID: 21334}
     - Class: 114
-      Script: {instanceID: 22498}
+      Script: {instanceID: 21416}
     - Class: 114
-      Script: {instanceID: 22760}
+      Script: {instanceID: 21626}
     - Class: 114
-      Script: {instanceID: 23244}
+      Script: {instanceID: 21660}
     - Class: 114
-      Script: {instanceID: 23510}
+      Script: {instanceID: 22040}
     - Class: 114
-      Script: {instanceID: 23612}
+      Script: {instanceID: 22504}
+    - Class: 114
+      Script: {instanceID: 22766}
+    - Class: 114
+      Script: {instanceID: 23250}
+    - Class: 114
+      Script: {instanceID: 23516}
+    - Class: 114
+      Script: {instanceID: 23618}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 134
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -311,6 +327,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseExitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ImmortalityEffect
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -547,7 +569,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseDownMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 81aad14f9325425e6a3c2d0f747b94d0
+      Hash: 724ed12ca595a5962911deff071c3d99
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: ObstacleMovement
@@ -623,6 +645,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnControllerColliderHitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 9bb33707c57593fb45e92de49bd7ecdb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Wall
   - hash:
       serializedVersion: 2
       Hash: 747284d692f6c45bae4955ed655ed04c
@@ -745,7 +773,7 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
-      Hash: 3066b13c15b647635f33fda27c72881c
+      Hash: 430eebf87ce674eadfd64d9fc849bdf0
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerCollision
@@ -805,7 +833,7 @@ ScriptsOnlyBuild:
     className: ScreenSpaceReflections
   - hash:
       serializedVersion: 2
-      Hash: f327900c81f6c4e67cd1622f93a05dcd
+      Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: TubeMovement
@@ -1009,6 +1037,12 @@ ScriptsOnlyBuild:
     className: StateGraphAsset
   - hash:
       serializedVersion: 2
+      Hash: 9bb33707c57593fb45e92de49bd7ecdb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Obstacle
+  - hash:
+      serializedVersion: 2
       Hash: 6a356b04c25c0bb008c1b24bf8b0f996
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -1033,22 +1067,28 @@ ScriptsOnlyBuild:
     className: AspectRatioFitter
   - hash:
       serializedVersion: 2
-      Hash: e4c654f2c22e97586651b87d4668f2fe
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Readme
-  - hash:
-      serializedVersion: 2
       Hash: 46ffbaea01259c5c7ee677afefd93ea8
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 9bb33707c57593fb45e92de49bd7ecdb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Gem
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.AdaptivePerformance
     namespaceName: UnityEngine.AdaptivePerformance
     className: AdaptiveResolution
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: AnimationManager
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1081,7 +1121,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMesh
   - hash:
       serializedVersion: 2
-      Hash: 19b2e8d11a77e2219317bf75a4c0881e
+      Hash: 2bd93b7e91cfc17ff11c6400d855946e
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: UIScript
@@ -1117,7 +1157,7 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: c76a70300936c6305ebb1194291394fe
+      Hash: 43b8cde3e70f509db7518d1dd356e159
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: FollowPlayer
@@ -1231,7 +1271,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 01557667483bd20d25cdb9e6cac8dfaa
+      Hash: d0fa88b1eba0a346561f1660fb2b9ead
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
@@ -1351,7 +1391,7 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 6c41e21b5c142e7a64ef9f654abb2510
+      Hash: 42cdd9ff7202d233d505e7f3d6e495c5
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnvironmentManager
@@ -1405,5 +1445,5 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   platform: 13
   scenePathNames:
-  - Assets/Scenes/DeafultLevel.unity
-  playerPath: C:/Users/Pawel/Desktop/CodeNGrow/Build gry/Android/Turbo Dash 2.2.apk
+  - Assets/Turbo_Dash/Design/Scenes/DeafultLevel.unity
+  playerPath: C:/Users/Pawel/Desktop/CodeNGrow/Build gry/Android/Turbo Dash 3.1.apk

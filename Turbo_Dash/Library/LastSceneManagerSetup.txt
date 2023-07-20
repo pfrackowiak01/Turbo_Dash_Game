@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/DeafultLevel.unity
+- path: Assets/Turbo_Dash/Design/Scenes/DeafultLevel.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
