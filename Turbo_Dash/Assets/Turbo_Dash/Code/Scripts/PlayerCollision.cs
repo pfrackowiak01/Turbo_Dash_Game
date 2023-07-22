@@ -37,7 +37,7 @@ public class PlayerCollision : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B)) BoostEffect();
         if (Input.GetKeyDown(KeyCode.S)) ShieldEffect();
         if (Input.GetKeyDown(KeyCode.H)) HeartEffect();
-        if (Input.GetKeyDown(KeyCode.G)) GoldEffect();
+        if (Input.GetKeyDown(KeyCode.G)) CoinEffect();
         if (Input.GetKeyDown(KeyCode.P)) DiamondEffect();
         if (Input.GetKeyDown(KeyCode.L)) gameManager.GameLevelUp();
         if (Input.GetKeyDown(KeyCode.O)) gameManager.playerLives = 1000;
@@ -71,10 +71,10 @@ public class PlayerCollision : MonoBehaviour
 
             case "Portal":
                 Debug.Log("Portal detected.");
-                detectedObject = collision.gameObject;
-                if (gameManager.gameLocation == GameManager.Location.Inside)
-                    gameManager.gameLocation = GameManager.Location.Outside;
-                else gameManager.gameLocation = GameManager.Location.Inside;
+                gameManager.isPortalGoingToSpawn = false;
+                GameManager.Instance.FixScore();
+                GameManager.Instance.ChangeLocation();
+                GameManager.Instance.GameLevelUp();
                 break;
 
             case "Floor":
@@ -112,7 +112,7 @@ public class PlayerCollision : MonoBehaviour
                 
                 detectedObject = collision.gameObject;
                 DestroyDetectedObject();
-                GoldEffect();
+                CoinEffect();
                 break;
 
             case "Diamond":
@@ -242,14 +242,16 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
-    private void GoldEffect()
+    private void CoinEffect()
     {
-        gameManager.playerGold++;
+        gameManager.playerCoins++;
+        PlayerPrefs.SetInt("Coins", gameManager.playerCoins);
     }
 
     private void DiamondEffect()
     {
-        gameManager.playerGold = gameManager.playerGold + 10;
+        gameManager.playerDiamonds++;
+        PlayerPrefs.SetInt("Diamonds", gameManager.playerDiamonds);
     }
 
     private void ImmortalityEffect()

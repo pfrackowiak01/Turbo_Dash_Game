@@ -33,25 +33,27 @@ public class TubeManager : MonoBehaviour
         // System obs³uguj¹cy spawnowanie obiektów w rurze (pod warunkiem, ¿e zespawni³y siê ju¿ wszystkie bezpieczne/puste rury)
         if (gameManager.safeTubes == 0)
         {
-            if (Random.Range(1, 100) <= percentageChance)
-            {
-                // Stwórz prefab przeszkody pobrany z Obstacle ScriptableObject
-                gameManager.SpawnObject(gameManager.usedObstacles, parrent);
-            }
-            else
-            {
-                // Stwórz prefab œciany pobrany z Wall ScriptableObject
-                gameManager.SpawnObject(gameManager.usedWalls, parrent);
-            }
-
             // Stwórz Portal do Space levelu, je¿eli jest to zamierzane
             if (gameManager.isPortalGoingToSpawn)
             {
                 gameManager.SpawnPortal(parrent);
-                gameManager.isPortalGoingToSpawn = false;
             }
-            // Stwórz ScriptableObject gemu (range 1 i 3 to szansa 1/3 czyli 33%)
-            else if (Random.Range(1, 3) == 1) gameManager.SpawnObject(gameManager.usedGems, parrent);
+            else
+            {
+                if (Random.Range(1, 100) <= percentageChance)
+                {
+                    // Stwórz prefab przeszkody pobrany z Obstacle ScriptableObject
+                    gameManager.SpawnObject(gameManager.usedObstacles, parrent);
+                }
+                else
+                {
+                    // Stwórz prefab œciany pobrany z Wall ScriptableObject
+                    gameManager.SpawnObject(gameManager.usedWalls, parrent);
+                }
+
+                // Stwórz ScriptableObject gemu (range 1 i 3 to szansa 1/3 czyli 33%)
+                if (Random.Range(1, 3) == 1) gameManager.SpawnObject(gameManager.usedGems, parrent);
+            }
         }
         else GameManager.Instance.safeTubes--;
     }

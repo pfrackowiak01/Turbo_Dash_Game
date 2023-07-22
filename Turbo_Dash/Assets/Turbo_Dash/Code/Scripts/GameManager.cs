@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,12 +35,13 @@ public class GameManager : MonoBehaviour
     public bool gameHasEnded;
     public bool gamePaused;
     public float gameLevel;
+    public float spaceLevel;
     public Theme gameTheme;
     public string gameThemeName;
     public LevelDifficulty gameInsideDifficulty;
     public LevelDifficulty gameOutsideDifficulty;
     public Location gameLocation;
-    private float restartDelay = 2f;
+    public float restartDelay = 1f;
     public bool isPortalGoingToSpawn;
     public GameObject Portal;
 
@@ -46,8 +49,9 @@ public class GameManager : MonoBehaviour
     public int playerLives;
     public bool playerShield;
     public bool playerImmortality;
-    public float playerGold = 0;
-    public float playerHighScore = 0;
+    public int playerCoins;
+    public int playerDiamonds;
+    public int playerHighScore;
     public bool boostEffectEnable;
     public bool isFOVChanging;
     public float rotationAmount;
@@ -71,6 +75,20 @@ public class GameManager : MonoBehaviour
     public List<Wall> usedWalls = new List<Wall>();                   // Lista aktualnie u¿ywanych œcian
     public List<Obstacle> usedObstacles = new List<Obstacle>();       // Lista aktualnie u¿ywanych przeszkód
     public List<Gem> usedGems = new List<Gem>();                      // Lista aktualnie u¿ywanych gemów
+
+    [Header("Scoring System")]
+    public float timer = 0f;
+    public float gameScore = 0f;
+    public float gameScoreMultiplier = 23f;
+    public float gameScoreLevelMultiplier;
+    public float distanceToLevelUp = 1000f;
+    public float distanceToSpawnPortal = 200f;
+    public float distanceToRepeatStage; // 4000f
+
+    public float firstLevelUP;
+    public float secondLevelUP;
+    public float thirdLevelUP;
+    public float fourthLevelUP;
 
     public enum LevelDifficulty
     {
@@ -98,16 +116,79 @@ public class GameManager : MonoBehaviour
         AnimationManager.Call.Presets();
     }
 
+    public void Update()
+    {
+        //  >>> Up³yw czasu <<<
+        // Premia od aktualnego levela
+        gameScoreLevelMultiplier = (GameManager.Instance.gameLevel + 10f) / 10f;
+        // Premia od efektu przyspieszenia "Boost"
+        if (GameManager.Instance.boostEffectEnable) timer += (Time.deltaTime * 2 * gameScoreLevelMultiplier * gameScoreMultiplier);
+        else timer += Time.deltaTime * gameScoreLevelMultiplier * gameScoreMultiplier;
+
+        // Jeœli gra siênie zakoñczy³a to obliczanie wartoœæ dodawanego wyniku na podstawie czasu
+        if (!gameHasEnded) gameScore = timer;
+
+        if (Input.GetKeyDown(KeyCode.S)) timer += 200f;
+        if (Input.GetKeyDown(KeyCode.D)) timer = 2000f;
+        if (Input.GetKeyDown(KeyCode.W)) timer = thirdLevelUP + distanceToSpawnPortal;
+
+        // =========> LEVEL UP / SCORE SYSTEM <========= (DZIA£A TYLKO GDY ETAP MA 4 levele)
+
+        // Zwiêkszenie poziomu po okreœlonym pokonanym dystansie
+        if (gameScore > firstLevelUP)
+        {
+            firstLevelUP += distanceToRepeatStage;
+            GameManager.Instance.GameLevelUp();
+        }
+        if (gameScore > secondLevelUP)
+        {
+            secondLevelUP += distanceToRepeatStage;
+            GameManager.Instance.GameLevelUp();
+        }
+        // Zespawnowanie Portalu na okreœlonym dystansie
+        if (gameScore > thirdLevelUP && !isPortalGoingToSpawn)
+        {
+            GameManager.Instance.isPortalGoingToSpawn = true;
+        }
+        if (gameScore > fourthLevelUP && !isPortalGoingToSpawn)
+        {
+            GameManager.Instance.isPortalGoingToSpawn = true;
+        }
+    }
+
+    public void FixScore()
+    {
+        // Rozró¿nienie przy jakim portalu gameScore nale¿y naprawiæ
+        if (thirdLevelUP < fourthLevelUP)
+        {
+            // Je¿eli wynik jest mniejszy od planowanego Scora na level to doci¹gnij wynik scora
+            if (timer < thirdLevelUP + distanceToSpawnPortal) timer = thirdLevelUP + distanceToSpawnPortal;
+            // Zwiêkszenie do kolejnego progu aby wbiæ level
+            thirdLevelUP += distanceToRepeatStage;
+        }
+        else
+        {
+            // Je¿eli wynik jest mniejszy od planowanego Scora na level to doci¹gnij wynik scora
+            if (timer < fourthLevelUP + distanceToSpawnPortal) timer = fourthLevelUP + distanceToSpawnPortal;
+            // Zwiêkszenie do kolejnego progu aby wbiæ level
+            fourthLevelUP += distanceToRepeatStage;
+        }
+    }
+
     public void StartGame()
     {
         gameHasEnded = false;
         gamePaused = true;
         gameLevel = 1;
+        spaceLevel = 4;
         gameInsideDifficulty = LevelDifficulty.Easy;
         gameOutsideDifficulty = LevelDifficulty.Hard;
         gameLocation = Location.Inside;
         isPortalGoingToSpawn = false;
 
+        playerCoins = PlayerPrefs.GetInt("Coins", 0);
+        playerDiamonds = PlayerPrefs.GetInt("Diamonds", 0);
+        playerHighScore = PlayerPrefs.GetInt("HighScore", 0);
         playerLives = 3;
         playerShield = false;
         playerImmortality = false;
@@ -131,6 +212,14 @@ public class GameManager : MonoBehaviour
 
         gameTheme = GetThemeByName(gameThemeName);
         RenderSettings.skybox = gameTheme.Space;
+
+        timer = 0f;
+        gameScore = 0f;
+        distanceToRepeatStage = distanceToLevelUp * 4;   // jeden Stage zawiera 4 levele
+        firstLevelUP = distanceToLevelUp;                                 // 1000f
+        secondLevelUP = distanceToLevelUp * 2;                            // 2000f
+        thirdLevelUP = distanceToLevelUp * 3 - distanceToSpawnPortal;     // 3000f - 180f
+        fourthLevelUP = distanceToRepeatStage - distanceToSpawnPortal;    // 4000f - 180f
     }
 
     public void GameOver()
@@ -139,7 +228,8 @@ public class GameManager : MonoBehaviour
         {
             gameHasEnded = true;
             Time.timeScale = 0.4f;
-            Debug.Log("GAME OVER");
+            SaveAndLoadManager.Instance.SaveHighScore((int)gameScore);
+            UnityEngine.Debug.Log("GAME OVER");
             Invoke("RestartGame",restartDelay);
         }
     }
@@ -179,6 +269,13 @@ public class GameManager : MonoBehaviour
         usedWalls = UpdateObjectListToSpawnByLevel(allWalls);
         usedObstacles = UpdateObjectListToSpawnByLevel(allObstacles);
         usedGems = UpdateObjectListToSpawnByLevel(allGems);
+    }
+
+    public void ChangeLocation()
+    {
+        if (gameLocation == Location.Inside) gameLocation = Location.Outside;
+        else gameLocation = Location.Inside;
+        safeTubes = 2;
     }
 
     public void ChooseGameDifficultyByLocation()
@@ -258,7 +355,7 @@ public class GameManager : MonoBehaviour
             GameObject newObject = Instantiate(spawnableObject.GetPrefab(), parent.position, parent.rotation, parent);
             AssignMaterialByTag(newObject);
         }
-        else Debug.Log("Lista obiektów jest pusta!");
+        else UnityEngine.Debug.Log("Lista obiektów jest pusta!");
     }
     public void SpawnPortal(Transform parent)
     {

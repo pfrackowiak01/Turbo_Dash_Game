@@ -63,6 +63,7 @@
     <Compile Include="Assets\Turbo_Dash\Code\Scripts\TubeManager.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndGrain.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\Unity UI Samples\Scripts\DropMe.cs" />
+    <Compile Include="Assets\Turbo_Dash\Code\UIScripts\LoadLootPanel.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\Unity UI Samples\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\CreaseShading.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
     <Compile Include="Assets\Turbo_Dash\Code\ScriptableObjects\Wall.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\Grayscale.cs" />
+    <Compile Include="Assets\Turbo_Dash\Code\Scripts\SaveAndLoadManager.cs" />
     <Compile Include="Assets\Turbo_Dash\Code\Scripts\PlayerCollision.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\MotionBlur.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\ScreenSpaceAmbientObscurance.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Assets\Turbo_Dash\Code\AnimationScripts\AnimationManager.cs" />
     <Compile Include="Assets\Turbo_Dash\Code\Scripts\UIScript.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\SepiaTone.cs" />
+    <Compile Include="Assets\Turbo_Dash\Code\AnimationScripts\LevelLoader.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\Quads.cs" />
     <Compile Include="Assets\Turbo_Dash\Addons\#NVJOB Alpha Flashing UI\Example Scenes\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionCurves.cs" />

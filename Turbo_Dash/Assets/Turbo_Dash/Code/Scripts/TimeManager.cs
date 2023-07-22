@@ -24,14 +24,20 @@ public class TimeManager : MonoBehaviour
         // Zatrzymywanie i wznawianie rozgrywki za pomoc¹ "Escape", "Space" lub klikniêcia
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
-            if (gameManager.gamePaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            TogglePauseGame();
+        }
+        // ===========================================================
+    }
+
+    public void TogglePauseGame()
+    {
+        if (gameManager.gamePaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
         }
     }
 

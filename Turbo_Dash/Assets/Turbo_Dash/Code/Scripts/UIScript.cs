@@ -2,27 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI turboText;
+    public TextMeshProUGUI gameModeText;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI coinsText;
+    public TextMeshProUGUI diamondsText;
     public TextMeshProUGUI livesText;
-    public TextMeshProUGUI shieldText;
-    public TextMeshProUGUI goldText;
+    public Image shield;
     public GameObject gamePausedScreen;
     public GameObject gameOverScreen;
 
-    private float timer = 0f;
-    private float scoreTime = 0f;
-    private float distanceToLevelUp = 1000f;
-    private float distanceToSpawnPortal = 760f;
+    public float speed;
+    public float baseSpeed;
+    public float maxSpeed;
+    public float turboSpeed;
+
+    private float previousScore;
+    private float previousTime;
+    public float updateInterval = 0.5f; // Co ile sekund ma byæ aktualizowany wynik
 
     void Start()
     {
-        //GameManager.Instance.GameLevelUp();
-        levelText.text = "Level: " + GameManager.Instance.gameLevel.ToString();
+        speed = 0;
+        baseSpeed = 20;
+        maxSpeed = 20;
+        turboSpeed = 20;
+
+        previousScore = GameManager.Instance.gameScore;
+        previousTime = Time.time;
     }
 
     void Update()
@@ -39,7 +53,7 @@ public class UIScript : MonoBehaviour
             // Pokazanie widoku zakoñczonej gry
             gameOverScreen.SetActive(true);
         }
-        // -------------> SYSTEM PUNKTÓW <--------------
+        // -----------> EKRAN AKTYWNEJ GRY <------------
         else
         {
             // Ukrycie widoku zatrzymanej gry
@@ -47,50 +61,65 @@ public class UIScript : MonoBehaviour
 
             // Ukrycie widoku zakoñczonej gry
             gameOverScreen.SetActive(false);
-
-            // Up³yw czasu
-            timer += Time.deltaTime;
-
-            // Obliczanie wyniku na podstawie czasu
-            scoreTime = timer * 23 * (GameManager.Instance.gameLevel/10 + 1);
-
-            // Premia od efektu przyspieszenia "Boost"
-            if (GameManager.Instance.boostEffectEnable) scoreTime += 1;
         }
-        // ---------------------------------------------
+        // --------------------------------------------
 
+        // Obliczanie prêdkoœci i wyœwietlanie jej w p³ynny sposób
+        //if (GameManager.Instance.boostEffectEnable) maxSpeed = baseSpeed + turboSpeed;
+        //else maxSpeed = baseSpeed;
+        //if (speed < maxSpeed) speed += 0.1f;
+        //if (speed > maxSpeed) speed -= 0.1f;
 
+        // =========> OBLICZANIE PRÊDKOŒCI m/s <========
+        float currentScore = GameManager.Instance.gameScore;
+        float currentTime = Time.time;
 
+        // Sprawdzamy, czy minê³a wystarczaj¹ca iloœæ czasu do aktualizacji wyniku
+        if (currentTime - previousTime >= updateInterval)
+        {
+            // Obliczamy ró¿nicê w punktach i czasie od ostatniej aktualizacji
+            float scoreDifference = currentScore - previousScore;
+            float timeDifference = currentTime - previousTime;
 
+            // Obliczamy punkty na sekundê (punkty/s)
+            float scorePerSecond = scoreDifference / timeDifference;
+
+            // Wyœwietlamy wynik na ekranie
+            speed = scorePerSecond;
+
+            // Aktualizujemy wartoœci poprzednich wyników i czasu
+            previousScore = currentScore;
+            previousTime = currentTime;
+        }
 
         // ==========> EKRAN ROZGRYWANEJ GRY <==========
-
-        // Zespawnowanie Portalu na okreœlonym dystansie
-        if (!GameManager.Instance.isPortalGoingToSpawn && scoreTime > (GameManager.Instance.gameLevel * distanceToLevelUp) + distanceToSpawnPortal)
-        {
-            GameManager.Instance.isPortalGoingToSpawn = true;
-            GameManager.Instance.GameLevelUp();
-        }
-        // Zwiêkszenie poziomu po okreœlonym pokonanym dystansie
-        else if (scoreTime > GameManager.Instance.gameLevel * distanceToLevelUp)
-        {
-            GameManager.Instance.GameLevelUp();
-        }
-
         // Wyœwietlanie uzyskanego wyniku
-        scoreText.text = scoreTime.ToString("0");
+        scoreText.text = GameManager.Instance.gameScore.ToString("0");
+
+        // Wyœwietlanie aktualnej prêdkoœci
+        speedText.text = speed.ToString("F1");
+
+        // Wyœwietlanie aktualnego stanu TURBO
+        turboText.text = "TURBO";
 
         // Wyœwietlanie aktualnego poziomu
-        levelText.text = "Level: " + GameManager.Instance.gameLevel.ToString();
+        //gameModeText.text = SaveAndLoadManager.Instance.GameModeString();
+
+        // Wyœwietlanie aktualnego poziomu
+        levelText.text = GameManager.Instance.gameLevel.ToString();
 
         // Wyœwietlanie iloœci z³ota
-        goldText.text = "Gold: " + GameManager.Instance.playerGold.ToString();
+        coinsText.text = GameManager.Instance.playerCoins.ToString();
+
+        // Wyœwietlanie iloœci diamentów
+        diamondsText.text = GameManager.Instance.playerDiamonds.ToString();
 
         // Wyœwietlanie iloœci ¿yæ
-        livesText.text = "Lives: " + GameManager.Instance.playerLives.ToString();
+        livesText.text = GameManager.Instance.playerLives.ToString();
 
         // Wyœwietlanie czy gracz posiada tarcze
-        shieldText.text = "Shield:  " + GameManager.Instance.playerShield.ToString();
+        if (GameManager.Instance.playerShield) shield.enabled = true;
+        else shield.enabled = false;
         // =============================================
     }
 }
