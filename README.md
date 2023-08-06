@@ -5,7 +5,7 @@ Game Jolt profile: https://gamejolt.com/@SkipperFox
 
 Download my games: https://gamejolt.com/@SkipperFox/games
 
-Turbo Dash Game: Coming soon...
+Turbo Dash Game: https://gamejolt.com/games/turbodash/829803
 
 ---
 
