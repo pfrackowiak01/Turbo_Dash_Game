@@ -9,6 +9,7 @@ Turbo Dash Game: https://gamejolt.com/games/turbodash/829803
 
 ---
 
-# Work In Progress...
+# Attention
 
-The project is at the stage of detailed planning of the game design and making the first prototype.
+This public version of project is uncomplete - v3.5.0
+The final version is private - v4.5.3
